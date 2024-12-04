@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Light Translator
+ * Plugin Name: Light Translator.
  * Plugin URI: https://rubenrivas.es/light-translator
  * Description: Un plugin ligero para traducir cadenas de texto específicas con una carga mínima en el servidor.
  * Version: 1.0

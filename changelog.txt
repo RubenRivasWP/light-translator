@@ -1,3 +1,3 @@
 = 1.0.0 =
 * Primera versión estable.
-* Funcionalidad para agregar traducciones globales.
+* Funcionalidad para agregar traduccions globales.

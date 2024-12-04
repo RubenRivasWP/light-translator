@@ -20,4 +20,5 @@ Light Translator es un plugin simple para reemplazar textos específicos en tu s
 
 = 1.0.0 =
 * Primera versión estable.
-* Funcionalidad para agregar traducciones globales.
+* Funcionalidad para agregar traducciones globales..
+
