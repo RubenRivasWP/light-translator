@@ -1,0 +1,138 @@
+/* Estilo general del área de administración del plugin */
+.wrap {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos y encabezados */
+h1, h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Instrucciones */
+.notice {
+    background-color: #eaf8f3;
+    border-left: 4px solid #5FD9D4;
+    color: #333;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los formularios y botones */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    background-color: #5FD9D4;
+    color: #143945;  /* Cambié el color del texto del botón a #143945 */
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #4cb5b2;
+}
+
+/* Estilo de la tabla de traducciones */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo de la columna de acciones */
+table td:last-child {
+    width: 20%; /* Reduje el tamaño de la columna de acciones al 20% */
+}
+
+/* Estilo de los enlaces */
+a.button {
+    background-color: #4A90E2;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+a.button:hover {
+    background-color: #357ABD;
+}
+
+/* Metaboxes para añadir traducciones */
+#lt-new-translation {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#lt-new-translation input[type="text"] {
+    width: 45%;
+    display: inline-block;
+    margin-right: 10%;
+    box-sizing: border-box;
+}
+
+#lt-new-translation button {
+    width: auto;
+    margin-left: auto;
+    display: inline-block;
+}
+
+#lt-new-translation .form-group {
+    margin-bottom: 20px;
+}
+
+/* Estilo de las tablas para dispositivos móviles */
+@media (max-width: 768px) {
+    #lt-new-translation input[type="text"] {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    button, a.button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
