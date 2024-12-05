@@ -1,6 +1,11 @@
-= 1.0.0 =
+= 1.0.0 - 2024-12-01 =
 * Primera versión estable.
 * Funcionalidad para agregar traducciones globales.
 
-= 1.1.0 =
+= 1.1.0 - 2024-12-04 =
 * Mejoras en la interfaz de usuario.
+
+= 1.2.0 - 2024-12-05 =
+* Añadida una nueva pestaña de "Ajustes" en el menú de administración.
+* Nueva opción en "Ajustes" para eliminar las tablas de la base de datos al desactivar el plugin.
+* Mejoras en el diseño y la experiencia de usuario.
