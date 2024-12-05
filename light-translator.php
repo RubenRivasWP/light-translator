@@ -40,6 +40,19 @@ function lt_create_translations_table() {
     dbDelta($sql);
 }
 
+// Opción de eliminación de tablas al desactivar
+register_deactivation_hook(__FILE__, 'lt_deactivate_plugin');
+function lt_deactivate_plugin() {
+    $delete_tables = get_option('lt_delete_tables_on_deactivation', false);
+
+    if ($delete_tables) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'lt_translations';
+        $wpdb->query("DROP TABLE IF EXISTS $table_name");
+        delete_option('lt_translations'); // Eliminar también la opción
+    }
+}
+
 // Agregar la página de administración
 add_action('admin_menu', 'lt_add_admin_page');
 function lt_add_admin_page() {
@@ -52,9 +65,48 @@ function lt_add_admin_page() {
         'dashicons-translation',
         20
     );
+    add_submenu_page(
+        'light-translator',
+        'Ajustes',
+        'Ajustes',
+        'manage_options',
+        'light-translator-settings',
+        'lt_render_settings_page'
+    );
 }
 
-// Renderizar la página de administración
+// Página de ajustes del plugin
+function lt_render_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1><?php esc_html_e('Ajustes de Light Translator', 'light-translator'); ?></h1>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields('lt_settings_group');
+            do_settings_sections('light-translator-settings');
+            ?>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row"><?php esc_html_e('Eliminar las tablas de traducción al desactivar', 'light-translator'); ?></th>
+                    <td>
+                        <input type="checkbox" name="lt_delete_tables_on_deactivation" value="1" <?php checked(1, get_option('lt_delete_tables_on_deactivation'), true); ?> />
+                        <span class="description"><?php esc_html_e('Marque esta opción para eliminar las tablas de traducción de la base de datos cuando desactive el plugin.', 'light-translator'); ?></span>
+                    </td>
+                </tr>
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
+}
+
+// Registrar los ajustes
+add_action('admin_init', 'lt_register_settings');
+function lt_register_settings() {
+    register_setting('lt_settings_group', 'lt_delete_tables_on_deactivation');
+}
+
+// Renderizar la página principal de traducciones
 function lt_render_admin_page() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'lt_translations';
@@ -110,8 +162,8 @@ function lt_render_admin_page() {
     echo '<button type="submit" name="lt_save_translation">' . (isset($edit_translation) ? esc_html__('Actualizar', 'light-translator') : esc_html__('Guardar', 'light-translator')) . '</button>';
     echo '</form>';
      
-     // Separador
-echo '<hr>'; // Este es el separador
+    // Separador
+    echo '<hr>'; // Este es el separador
 
     // Listado de traducciones
     echo '<h2>' . esc_html__('Traducciones actuales', 'light-translator') . '</h2>';
@@ -141,7 +193,7 @@ function lt_replace_translations($content) {
 
     $translations = wp_cache_get('lt_translations');
     if (!$translations) {
-        $translations = $wpdb->get_results("SELECT original_text, translated_text FROM $table_name");
+        $translations = $wpdb->get_results("SELECT * FROM $table_name");
         wp_cache_set('lt_translations', $translations);
     }
 
