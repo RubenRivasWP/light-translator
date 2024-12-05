@@ -109,6 +109,9 @@ function lt_render_admin_page() {
     echo '<input type="text" name="translated_text" placeholder="' . esc_attr__('Traducción', 'light-translator') . '" value="' . esc_attr($edit_translation->translated_text ?? '') . '" required>';
     echo '<button type="submit" name="lt_save_translation">' . (isset($edit_translation) ? esc_html__('Actualizar', 'light-translator') : esc_html__('Guardar', 'light-translator')) . '</button>';
     echo '</form>';
+     
+     // Separador
+echo '<hr>'; // Este es el separador
 
     // Listado de traducciones
     echo '<h2>' . esc_html__('Traducciones actuales', 'light-translator') . '</h2>';
